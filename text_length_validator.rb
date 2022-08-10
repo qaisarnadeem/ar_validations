@@ -6,7 +6,7 @@ Rails.application.eager_load!
 exceptions = ['ClockingCard']
 
 models =  ActiveRecord::Base.descendants.select {|m| m.table_name && exceptions.exclude?(m.name.to_s)}
-(models - exceptions).each do |model|
+models.each do |model|
   text_columns = model.columns.select do |c|
     c.type == :text && no_length_validation?(c,model)
   end
